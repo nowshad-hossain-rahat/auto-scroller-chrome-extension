@@ -3,6 +3,7 @@
     "name": "NHR Auto Scroller",
     "description": "This extension will automatically scroll up or down after page load!",
     "version": "1.0.0",
+    "author": "Nowshad Hossain Rahat",
     "icons": {
         "48": "icon.png"
     },

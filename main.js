@@ -16,6 +16,6 @@ window.addEventListener("load", (evt) => {
         window.scrollTo(0, i);
         i+=10;
 
-    }, 100);
+    }, 25);
 
 });
