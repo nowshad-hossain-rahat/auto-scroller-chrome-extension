@@ -1,21 +1,29 @@
 window.addEventListener("load", (evt) => {
 
     let bodyScrollHeight = document.body.scrollHeight;
-    let i = 10;
+    let reachedBottom = false;
+    let gap = document.body.scrollHeight - window.scrollY;
 
-    window.addEventListener('scroll', (evt) => {
+    setInterval(() => {
 
-        i = window.scrollY;
+        if(gap == (document.body.scrollHeight - window.scrollY)){
+            
+            reachedBottom = (window.scrollY < 11) ? false:true;
 
-    });
+        }
 
-    let scroller = setInterval(() => {
+        if(reachedBottom == false){
 
-        if(i >= bodyScrollHeight){clearInterval(scroller); return;}
-        console.log('now : ', i);
-        window.scrollTo(0, i);
-        i+=10;
+            window.scrollTo(0, window.scrollY + 10);
 
-    }, 25);
+        }else{
+
+            window.scrollTo(0, window.scrollY - 10);
+
+        }
+
+        gap = document.body.scrollHeight - window.scrollY;
+
+    }, 50);
 
 });
