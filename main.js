@@ -1,28 +1,33 @@
 window.addEventListener("load", (evt) => {
 
-    let bodyScrollHeight = document.body.scrollHeight;
-    let reachedBottom = false;
-    let gap = document.body.scrollHeight - window.scrollY;
+    let documentElementScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let increaseBy = 10;
+    let reached = 'top';
+
+    // setting initial reached value
+    if(window.scrollY <= documentElementScrollHeight || window.scrollY > (documentElementScrollHeight - (increaseBy + 1))){
+        reached = 'bottom';
+    }else if(window.scrollY <= 0 || window.scrollY  < (increaseBy + 1)){
+        reached = 'top';
+    }
 
     setInterval(() => {
 
-        if(gap == (document.body.scrollHeight - window.scrollY)){
-            
-            reachedBottom = (window.scrollY < 11) ? false:true;
-
+        if(window.scrollY < documentElementScrollHeight && window.scrollY > (documentElementScrollHeight - (increaseBy + 1))){
+            reached = 'bottom';
+        }else if(window.scrollY <= 0 || window.scrollY  < (increaseBy + 1)){
+            reached = 'top';
         }
 
-        if(reachedBottom == false){
+        if(reached == 'top'){
 
-            window.scrollTo(0, window.scrollY + 10);
+            window.scrollTo(0, window.scrollY + increaseBy);
 
-        }else{
+        }else if(reached == 'bottom'){
 
-            window.scrollTo(0, window.scrollY - 10);
+            window.scrollTo(0, window.scrollY - increaseBy);
 
         }
-
-        gap = document.body.scrollHeight - window.scrollY;
 
     }, 50);
 
